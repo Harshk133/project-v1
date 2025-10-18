@@ -179,8 +179,6 @@
 // }
 
 
-
-
 "use client";
 import { useState } from "react";
 
@@ -200,15 +198,15 @@ export default function Page() {
     time: new Date().toLocaleTimeString(),
   });
 
-  // 🧠 Format date as dd/mm/yy automatically
+  // 🧠 Format date as dd/mm/yyyy automatically
   const formatDate = (input) => {
-    // Allow digits and slashes only
+    // Remove non-digits
     const cleaned = input.replace(/[^\d]/g, "");
-    if (cleaned.length >= 6) {
-      // format to dd/mm/yy
-      return cleaned.replace(/(\d{2})(\d{2})(\d{2}).*/, "$1/$2/$3");
+    if (cleaned.length >= 8) {
+      // Format to dd/mm/yyyy
+      return cleaned.replace(/(\d{2})(\d{2})(\d{4}).*/, "$1/$2/$3");
     } else if (cleaned.length >= 4) {
-      // partially format
+      // Partial format
       return cleaned.replace(/(\d{2})(\d{2})/, "$1/$2");
     }
     return cleaned;
@@ -229,7 +227,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-8">
-      {/* --- FORM SECTION (Hidden in Print) --- */}
+      {/* --- FORM SECTION --- */}
       <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-10 print:hidden max-w-3xl mx-auto">
         <h2 className="text-lg font-semibold mb-3 text-gray-800 text-center">
           Fill Tirupati Courier Bill Details
@@ -238,7 +236,7 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { name: "destination", label: "Destination" },
-            { name: "date", label: "Date (dd/mm/yy)" },
+            { name: "date", label: "Date (dd/mm/yyyy)" },
             { name: "awb", label: "AWB Number" },
             { name: "sender", label: "Sender Name" },
             { name: "gst", label: "Sender GST No." },
@@ -260,7 +258,7 @@ export default function Page() {
                 placeholder={field.label}
                 className="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-orange-400 text-sm"
                 inputMode={field.name === "date" ? "numeric" : "text"}
-                maxLength={field.name === "date" ? 8 : undefined}
+                maxLength={field.name === "date" ? 10 : undefined}
               />
             </div>
           ))}
