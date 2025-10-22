@@ -178,7 +178,6 @@
 //   );
 // }
 
-
 "use client";
 import { useState } from "react";
 
@@ -198,27 +197,10 @@ export default function Page() {
     time: new Date().toLocaleTimeString(),
   });
 
-  // 🧠 Format date as dd/mm/yyyy automatically
-  const formatDate = (input) => {
-    // Remove non-digits
-    const cleaned = input.replace(/[^\d]/g, "");
-    if (cleaned.length >= 8) {
-      // Format to dd/mm/yyyy
-      return cleaned.replace(/(\d{2})(\d{2})(\d{4}).*/, "$1/$2/$3");
-    } else if (cleaned.length >= 4) {
-      // Partial format
-      return cleaned.replace(/(\d{2})(\d{2})/, "$1/$2");
-    }
-    return cleaned;
-  };
-
+  // ✅ Handle all input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "date") {
-      setForm({ ...form, date: formatDate(value) });
-    } else {
-      setForm({ ...form, [name]: value });
-    }
+    setForm({ ...form, [name]: value });
   };
 
   const handlePrint = () => {
@@ -234,9 +216,36 @@ export default function Page() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Destination */}
+          <div className="flex flex-col">
+            <label className="text-xs font-semibold mb-1 text-gray-600">
+              Destination
+            </label>
+            <input
+              name="destination"
+              value={form.destination}
+              onChange={handleChange}
+              placeholder="Destination"
+              className="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-orange-400 text-sm"
+            />
+          </div>
+
+          {/* Date Picker */}
+          <div className="flex flex-col">
+            <label className="text-xs font-semibold mb-1 text-gray-600">
+              Date
+            </label>
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              className="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-orange-400 text-sm"
+            />
+          </div>
+
+          {/* Other fields */}
           {[
-            { name: "destination", label: "Destination" },
-            { name: "date", label: "Date (dd/mm/yyyy)" },
             { name: "awb", label: "AWB Number" },
             { name: "sender", label: "Sender Name" },
             { name: "gst", label: "Sender GST No." },
@@ -257,8 +266,6 @@ export default function Page() {
                 onChange={handleChange}
                 placeholder={field.label}
                 className="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-orange-400 text-sm"
-                inputMode={field.name === "date" ? "numeric" : "text"}
-                maxLength={field.name === "date" ? 10 : undefined}
               />
             </div>
           ))}
@@ -302,7 +309,11 @@ export default function Page() {
           </div>
           <div className="p-1 border-r border-gray-400">
             <strong>DATE</strong>
-            <p>{form.date}</p>
+            <p>
+              {form.date
+                ? new Date(form.date).toLocaleDateString("en-IN")
+                : ""}
+            </p>
           </div>
           <div className="p-1">
             <strong>AWB NUMBER</strong>
