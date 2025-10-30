@@ -253,7 +253,8 @@ export default function Page() {
             { name: "description", label: "Description of Contents" },
             { name: "value", label: "Declared Value" },
             { name: "weight", label: "Weight (Kg)" },
-            { name: "freight", label: "Freight Charge" },
+            // { name: "freight", label: "Freight Charge" },
+            { name: "freight", label: "Total Ammount" },
             { name: "total", label: "Total Amount" },
           ].map((field) => (
             <div key={field.name} className="flex flex-col">
@@ -351,7 +352,8 @@ export default function Page() {
             <p>{form.weight}</p>
           </div>
           <div className="p-1">
-            <strong>FREIGHT CHARGE</strong>
+            {/* <strong>FREIGHT CHARGE</strong> */}
+            <strong>Total Ammount</strong>
             <p>{form.freight}</p>
           </div>
         </div>
