@@ -288,11 +288,11 @@ export default function Page() {
         {/* Header */}
         <div className="text-center border-b-2 border-yellow-500 pb-1 mb-2">
           <h2 className="text-base sm:text-lg font-bold text-orange-700">
-            Tirupati Courier Services Pvt. Ltd.
+            Shree Tirupati Courier Services Pvt. Ltd.
           </h2>
           <p className="text-[9px] sm:text-[10px] text-gray-600 leading-tight">
             Franchisee: V.K. Enterprises, 13, Vanjari Complex, Opp. Vanjari
-            Dharmashala, Tanpure Math Road, Pandharpur
+            Dharmashala, Tanpure Math Road, Pandharpur Mobile NO.:  9881400637
           </p>
         </div>
 
