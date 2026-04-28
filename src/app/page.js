@@ -218,10 +218,14 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Destination */}
           <div className="flex flex-col">
-            <label className="text-xs font-semibold mb-1 text-gray-600">
+            <label
+              htmlFor="destination"
+              className="text-xs font-semibold mb-1 text-gray-600"
+            >
               Destination
             </label>
             <input
+              id="destination"
               name="destination"
               value={form.destination}
               onChange={handleChange}
@@ -232,10 +236,14 @@ export default function Page() {
 
           {/* Date Picker */}
           <div className="flex flex-col">
-            <label className="text-xs font-semibold mb-1 text-gray-600">
+            <label
+              htmlFor="date"
+              className="text-xs font-semibold mb-1 text-gray-600"
+            >
               Date
             </label>
             <input
+              id="date"
               type="date"
               name="date"
               value={form.date}
@@ -258,10 +266,14 @@ export default function Page() {
             { name: "total", label: "Total Amount" },
           ].map((field) => (
             <div key={field.name} className="flex flex-col">
-              <label className="text-xs font-semibold mb-1 text-gray-600">
+              <label
+                htmlFor={field.name}
+                className="text-xs font-semibold mb-1 text-gray-600"
+              >
                 {field.label}
               </label>
               <input
+                id={field.name}
                 name={field.name}
                 value={form[field.name]}
                 onChange={handleChange}
@@ -273,6 +285,7 @@ export default function Page() {
         </div>
 
         <button
+          type="button"
           onClick={handlePrint}
           className="mt-6 w-full sm:w-auto bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 font-semibold"
         >
@@ -292,7 +305,7 @@ export default function Page() {
           </h2>
           <p className="text-[9px] sm:text-[10px] text-gray-600 leading-tight">
             Franchisee: V.K. Enterprises, 13, Vanjari Complex, Opp. Vanjari
-            Dharmashala, Tanpure Math Road, Pandharpur Mobile NO.:  9881400637
+            Dharmashala, Tanpure Math Road, Pandharpur Mobile NO.: 9881400637
           </p>
         </div>
 
@@ -311,9 +324,7 @@ export default function Page() {
           <div className="p-1 border-r border-gray-400">
             <strong>DATE</strong>
             <p>
-              {form.date
-                ? new Date(form.date).toLocaleDateString("en-IN")
-                : ""}
+              {form.date ? new Date(form.date).toLocaleDateString("en-IN") : ""}
             </p>
           </div>
           <div className="p-1">
