@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* custom dark varient made for the whole root app! */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
